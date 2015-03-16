@@ -68,6 +68,7 @@ enum MessageType {
 	MessageType_DebugLinkState = 102 [(wire_debug_out) = true];
 	MessageType_DebugLinkStop = 103 [(wire_debug_in) = true];
 	MessageType_DebugLinkLog = 104 [(wire_debug_out) = true];
+	MessageType_Benchmark = 99 [(wire_in) = true];
 }
 
 ////////////////////
@@ -641,4 +642,16 @@ message DebugLinkLog {
 	optional uint32 level = 1;
 	optional string bucket = 2;
 	optional string text = 3;
+}
+
+
+/**
+ * Request: Benchmark a function
+ * @next Features
+ */
+message Benchmark {
+	required uint32 function = 1;
+	required uint32 repetitions = 2;
+	optional bytes  data1 = 3;
+	optional bytes  data2 = 4;
 }
